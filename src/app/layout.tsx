@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className=" flex flex-col h-screen">
+      <body className=" flex flex-col h-screen" suppressHydrationWarning={true}>
         <header className="grid grid-cols-8 text-center gap-x-0.5 ">
           <div className="bg-slate-200 p-2">File</div>
           <div className="col-start-2 col-end-6 bg-slate-200 p-2">Box</div>
