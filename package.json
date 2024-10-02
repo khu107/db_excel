@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@grapecity/spread-sheets": "^17.1.6",
+    "@grapecity/spread-sheets-react": "^17.1.6",
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
