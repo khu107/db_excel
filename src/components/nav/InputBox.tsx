@@ -3,10 +3,18 @@
 import { useExcelStore } from "@/store/excel_store";
 import React, { ChangeEvent } from "react";
 import * as XLSX from "xlsx";
+import { Button } from "../ui/button";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { Database, File } from "lucide-react";
 
 export default function InputBox() {
-  // const [excelData, setExcelData] = useState<ExcelData[][] | null>(null);
-  // console.log(excelData);
   const { addFileData, clearFiles } = useExcelStore();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,14 +45,34 @@ export default function InputBox() {
     }
   };
 
+  const triggerFileInput = () => {
+    const fileInput = document.getElementById(
+      "input-file"
+    ) as HTMLInputElement | null;
+    if (fileInput) {
+      fileInput.click();
+    }
+  };
+
   return (
     <div className="flex justify-center items-center bg-slate-200">
-      <label
-        htmlFor="input-file"
-        className="flex items-center cursor-pointer text-sm rounded-md h-9 px-3 bg-white "
-      >
-        Input Box
-      </label>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline"> Input Box</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-32">
+          <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <Database className="mr-2 h-4 w-4" />
+              <span>DataBase</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={triggerFileInput}>
+              <File className="mr-2 h-4 w-4" />
+              <span>File</span>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
       <input
         className="hidden"
         type="file"

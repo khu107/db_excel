@@ -33,11 +33,10 @@ export default function Main() {
           {files.map((file, index) => (
             <div
               key={index}
-              className="flex items-center justify-center mt-2 rounded-md border-4 border-gray-800 lg:mx-6 md:mx-4 bg-blue-500 cursor-pointer text-white h-24  tex"
+              className="flex items-center  mt-2  lg:mx-6 md:mx-4 border-b-2 border-b-black cursor-pointer"
               onClick={() => openModal(index)} // 파일 선택 시 Modal 열기
             >
-              {/* {file.fileName} 파일 이름 출력 */}
-              Input Box
+              {index + 1}. {file.fileName}
             </div>
           ))}
         </div>
