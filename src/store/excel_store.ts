@@ -26,4 +26,6 @@ export const useExcelStore = create<ExcelState>((set) => ({
       return { files: newFiles };
     }),
   clearFiles: () => set({ files: [] }),
+
 }));
+

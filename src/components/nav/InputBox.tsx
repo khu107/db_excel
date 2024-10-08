@@ -13,9 +13,21 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Database, File } from "lucide-react";
+import { dbStore } from "@/store/db_store";
 
 export default function InputBox() {
   const { addFileData, clearFiles } = useExcelStore();
+  const { setTableData } = dbStore();
+
+  const handleDatabaseClick = () => {
+    fetch("/api/table") // API 호출로 DB에서 데이터를 가져옴
+      .then((res) => res.json())
+      .then((data) => {
+        setTableData(data); // 가져온 데이터를 zustand 스토어에 저장
+        console.log("Database data fetched:", data);
+      })
+      .catch((err) => console.error("Error fetching database data:", err));
+  };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -62,7 +74,7 @@ export default function InputBox() {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-32">
           <DropdownMenuGroup>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDatabaseClick}>
               <Database className="mr-2 h-4 w-4" />
               <span>DataBase</span>
             </DropdownMenuItem>

@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import * as GC from "@grapecity/spread-sheets"; // SpreadJS 라이브러리 import
 import "@grapecity/spread-sheets/styles/gc.spread.sheets.excel2013white.css"; // SpreadJS 스타일 import
 import { useExcelStore } from "@/store/excel_store"; // Zustand에서 데이터 가져오기
+import { dbStore } from "@/store/db_store";
 
 // SpreadSheet 컴포넌트가 fileIndex prop을 받을 수 있도록 타입 정의
 interface SpreadSheetProps {
@@ -12,7 +13,8 @@ interface SpreadSheetProps {
 
 const SpreadSheet: React.FC<SpreadSheetProps> = ({ fileIndex }) => {
   const spreadRef = useRef<HTMLDivElement>(null);
-  const { files } = useExcelStore(); // Zustand에서 Excel 데이터를 가져옴
+  const { files } = useExcelStore();
+  const { tableData } = dbStore(); // Zustand에서 Excel 데이터를 가져옴
 
   useEffect(() => {
     if (spreadRef.current && files.length > fileIndex) {
